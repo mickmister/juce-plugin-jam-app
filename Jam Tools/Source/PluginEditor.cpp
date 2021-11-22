@@ -13,6 +13,7 @@
 JamToolsAudioProcessorEditor::JamToolsAudioProcessorEditor (JamToolsAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
+    std::cout << "\neditor constructor\n";
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
@@ -20,6 +21,7 @@ JamToolsAudioProcessorEditor::JamToolsAudioProcessorEditor (JamToolsAudioProcess
 
 JamToolsAudioProcessorEditor::~JamToolsAudioProcessorEditor()
 {
+    std::cout << "\neditor deconstructor\n";
 }
 
 //==============================================================================
@@ -30,7 +32,10 @@ void JamToolsAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.setColour (juce::Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+
+    juce::String s = "Jam App is running. Go to http://localhost:8080";
+
+    g.drawFittedText (s, getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void JamToolsAudioProcessorEditor::resized()

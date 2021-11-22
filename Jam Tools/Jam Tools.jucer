@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="p4Fb9q" name="Jam Tools" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginFormats="buildAU,buildStandalone,buildVST3" pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginProducesMidiOut,pluginWantsMidiIn"
+              pluginManufacturer="Michael Kochell" pluginVST3Category="Tools">
   <MAINGROUP id="k3ULqe" name="Jam Tools">
     <GROUP id="{8726CEFE-5E6A-2877-A611-C2A9C18214C6}" name="Source">
+      <FILE id="ltI0hP" name="vestige.h" compile="0" resource="0" file="Source/vestige.h"/>
       <FILE id="icFnQC" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
+      <FILE id="U4x74u" name="HTTPServer.cpp" compile="1" resource="0" file="Source/HTTPServer.cpp"/>
+      <FILE id="l14c5o" name="HTTPServer.h" compile="0" resource="0" file="Source/HTTPServer.h"/>
       <FILE id="WxIkmv" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
       <FILE id="AkxTxb" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="AX6lag" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <GROUP id="{2670CBD4-1047-422C-7627-45365C7DE383}" name="MessageBus">
+        <FILE id="RdXD76" name="BusListener.h" compile="0" resource="0" file="Source/MessageBus/BusListener.h"/>
+        <FILE id="z6UO76" name="MessageBus.cpp" compile="1" resource="0" file="Source/MessageBus/MessageBus.cpp"/>
+        <FILE id="VrSnDn" name="MessageBus.h" compile="0" resource="0" file="Source/MessageBus/MessageBus.h"/>
+        <FILE id="GqsXOM" name="Topic.cpp" compile="1" resource="0" file="Source/MessageBus/Topic.cpp"/>
+        <FILE id="ZNkt9O" name="Topic.h" compile="0" resource="0" file="Source/MessageBus/Topic.h"/>
+      </GROUP>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

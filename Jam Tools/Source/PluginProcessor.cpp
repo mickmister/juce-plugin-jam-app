@@ -9,23 +9,38 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include "HTTPServer.h"
+
+std::unique_ptr<HTTPServer> server(new HTTPServer(8080));
+
+bool standalone = true;
+
 //==============================================================================
 JamToolsAudioProcessor::JamToolsAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
+     : AudioProcessor (
+        !standalone ?
+        BusesProperties().withOutput ("out", juce::AudioChannelSet::stereo()).withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
+        : BusesProperties()
+
+//                    //  #if ! JucePlugin_IsMidiEffect
+//                      #if ! JucePlugin_IsSynth
+//                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
+//                      #endif
+//                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
+//                    //  #endif
                        )
 #endif
 {
+    std::cout << "\nprocessor constructor. starting server\n";
+    server->startThread();
 }
 
 JamToolsAudioProcessor::~JamToolsAudioProcessor()
 {
+    std::cout << "\n\n processor deconstructor. stopping server. \n\n";
+    server->stop();
+    server->stopThread(2000);
 }
 
 //==============================================================================
